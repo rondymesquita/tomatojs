@@ -1,0 +1,54 @@
+<ng-include src="'app/components/shared/header.html'"></ng-include>
+
+<md-content layout-padding>
+
+	<form name="settingsForm">
+		<h2>{{constants.settings_title}}</h2>
+
+	<div layout="row">
+		<div flex>
+			<md-input-container>
+		      <label>{{constants.pomodoro}}</label>
+		      <input ng-model="settings.pomodoro">
+		    </md-input-container>
+		</div>
+	</div>
+	<div layout="row">
+		<div flex>
+			<md-input-container>
+		      <label>{{constants.short_break}}</label>
+		      <input ng-model="settings.shortBreak">
+		    </md-input-container>
+		</div>
+	</div>
+	<div layout="row">
+		<div flex>
+			<md-input-container>
+		      <label>{{constants.long_break}}</label>
+		      <input ng-model="settings.longBreak">
+		    </md-input-container>
+		</div>
+	</div>
+
+	<div layout="row">
+		<div flex>
+			<md-radio-group ng-model="settings.notification">
+		      <md-radio-button value="web" checked>{{constants.web_notifications}}</md-radio-button>
+		      <md-radio-button value="toast"> {{constants.toast_notifications}} </md-radio-button>
+		    </md-radio-group>
+		</div>
+	</div>
+
+	<!-- Save -->
+	<div layout="row" layout-padding>
+		<div flex layout ng-hide="isRunning">
+			<md-button class="md-raised md-accent blockButton" ng-click="saveSettings()">{{constants.save}}</md-button>
+		</div>
+	</div>
+
+	</form>
+
+
+
+
+</md-content>

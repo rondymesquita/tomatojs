@@ -1,0 +1,11 @@
+angular.module('PomodoroApp').constant('config',{
+    defaultData:{
+        settings:{
+            pomodoro:3,
+            shortBreak:2,
+            longBreak:15,
+            notification:"toast"
+        },
+        cycles:[]
+    }
+});

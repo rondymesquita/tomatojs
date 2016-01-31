@@ -1,0 +1,77 @@
+<ng-include src="'app/components/shared/header.html'"></ng-include>
+
+<md-content>
+
+	<div layout="row">
+		<div flex>
+			<!-- <input id="counter" class="counter text-center" ng-model="time"/> -->
+			<div>{{status}}</div>
+			<div id="counter" class="counter text-center">
+				{{time}}
+			</div>
+		</div>
+	</div>
+	<div layout="row" layout-padding class="dots centerH" hide>
+		<md-button ng-repeat="i in runnedCycles track by $index" class="md-raised md-accent dot"></md-button>
+		<md-button ng-repeat="i in remainingCycles track by $index" class="md-raised md-primary dot"></md-button>
+		<!-- <md-button class="md-raised md-accent dot"></md-button> -->
+	</div>
+	<div layout="row" layout-padding class="dots centerH">
+		{{constants.short_break}}<md-switch ng-model="data.cb1" aria-label="Switch 1">{{constants.long_break}}
+  		</md-switch>
+	</div>
+	<div layout="row" layout-padding>
+		<div flex layout ng-hide="isRunning" class="centerH">
+			<md-button class="md-raised md-accent" ng-click="start()" >
+				<i class="fa fa-play"></i>
+			</md-button>
+		</div>
+		<div flex layout ng-hide="!isRunning" class="centerH">
+			<md-button class="md-raised md-accent" ng-click="stop()">
+				<i class="fa fa-stop"></i>
+			</md-button>
+		</div>
+		<div flex layout hide>
+			<md-button class="md-raised md-primary blockButton" ng-click="reset()">{{constants.reset}}</md-button>
+		</div>
+	</div>
+	<div layout="row" layout-padding>
+		<div flex layout hide>
+			<md-button class="md-raised md-primary blockButton" ng-click="startShortBreak()" >{{constants.short_break}}</md-button>
+		</div>
+		<div flex layout hide>
+			<md-button class="md-raised md-primary blockButton" ng-click="startLongBreak()">{{constants.long_break}}</md-button>
+		</div>
+	</div>
+
+
+	<div layout="row" layout-padding>
+		<div flex>
+		<md-toolbar md-scroll-shrink class="" layout-padding>
+    		<div class="md-toolbar-tools">{{constants.tasks}}: {{cycles.length}}
+				<span flex></span>
+				<md-button class="md-raised md-accent" ng-click="saveCycles()" ng-disabled="cyclesSaved" hide>
+					<span ng-show="!cyclesSaved">{{constants.save}}</span>
+					<span ng-show="cyclesSaved">{{constants.saved}}</span>
+				</md-button>
+			</div>
+  		</md-toolbar>
+
+		<md-list>
+      		<md-subheader class="md-no-sticky"></md-subheader>
+      		<md-list-item class="md-3-line" ng-repeat="cycle in cycles" ng-class-odd="'md-hue-gray'">
+		        <div class="md-list-item-text" layout="column"  layout-padding>
+		          <p>{{constants.pomodoro}} : {{cycle.pomodoro}}{{constants.min}}</p>
+		          <p>{{constants.break}} : {{cycle.break}}{{constants.min}}</p>
+				  <md-input-container>
+		  		      <label>{{constants.task}}</label>
+		  		      <input ng-model="cycle.task">
+	  		      </md-input-container>
+		        </div>
+				<md-divider ></md-divider>
+      		</md-list-item>
+	  	</md-list>
+		</div>
+	</div>
+
+</md-content>
